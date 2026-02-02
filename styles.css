@@ -1614,6 +1614,11 @@ h6 {
         max-width: none !important;
     }
 
+    .hero-bottom-text {
+        margin-top: 280px;
+        /* Bring text much closer on mobile */
+    }
+
     .gold-text {
         font-size: 0.75rem !important;
         /* Smaller to fit one line on all mobile screens */
