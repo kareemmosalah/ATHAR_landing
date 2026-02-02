@@ -435,8 +435,8 @@ h6 {
 
 /* Hero Bottom Text Styling */
 .hero-bottom-text {
-    margin-top: 500px;
-    /* Controls vertical distance from Arabic text - Increased to move far away */
+    margin-top: 460px;
+    /* Controls vertical distance from Arabic text */
     text-align: center;
     width: 100%;
 }
@@ -1619,7 +1619,7 @@ h6 {
         /* Smaller to fit one line on all mobile screens */
         letter-spacing: 0;
         position: relative;
-        top: -55px;
+        top: -65px;
     }
 
     .whatsapp-float {
