@@ -1621,7 +1621,7 @@ h6 {
         /* Smaller to fit one line on all mobile screens */
         letter-spacing: 0;
         position: relative;
-        top: -85px;
+        top: -100px;
     }
 
     .whatsapp-float {
