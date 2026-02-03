@@ -798,6 +798,46 @@ h6 {
     margin: var(--spacing-xl) 0;
 }
 
+/* === STITCHING EFFECT === */
+
+.problem-section,
+.organization-section,
+.craftsmanship-section {
+    position: relative;
+}
+
+.problem-section::before,
+.problem-section::after,
+.organization-section::before,
+.organization-section::after,
+.craftsmanship-section::before,
+.craftsmanship-section::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 280px;
+    background-image: url('./stitching_horizontal.png');
+    background-repeat: repeat-x;
+    background-size: auto 100%;
+    z-index: 10;
+    opacity: 0.8;
+}
+
+.problem-section::before,
+.organization-section::before,
+.craftsmanship-section::before {
+    top: -140px;
+    /* Half height overlap */
+}
+
+.problem-section::after,
+.organization-section::after,
+.craftsmanship-section::after {
+    bottom: -140px;
+    /* Half height overlap */
+}
+
 .showcase-image {
     width: 100%;
     max-width: 800px;
