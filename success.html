@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="أثر (ATHAR) - Premium laptop sleeves combining Arabic craftsmanship with innovative organization. Natural leather, eco-friendly linen, revolutionary circular cable organizer. اترك أثرك">
+    <meta name="keywords"
+        content="laptop sleeve, premium laptop bag, Arabic craftsmanship, leather laptop sleeve, cable organizer, eco-friendly tech accessories, أثر, حقيبة لابتوب">
+
+    <title>أثر | إتمام الطلب بنجاح | Order Successful</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="./Atharlogo_optimized.png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Montserrat:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="./styles.css">
+
+    <style>
+        .success-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 80px;
+            /* offset for nav */
+        }
+
+        .success-container {
+            background: var(--color-surface);
+            padding: var(--spacing-xxl) var(--spacing-lg);
+            border-radius: 24px;
+            border: 1px solid rgba(212, 165, 116, 0.2);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: var(--shadow-lg);
+            animation: slideUpFade 0.8s ease forwards;
+        }
+
+        .success-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(212, 165, 116, 0.1);
+            color: var(--color-secondary);
+            margin-bottom: var(--spacing-lg);
+            border: 2px solid var(--color-secondary);
+        }
+
+        .success-title {
+            font-size: 2rem;
+            color: var(--color-white);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .success-subtitle {
+            font-size: 1.25rem;
+            color: var(--color-secondary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .success-message {
+            font-size: 1.1rem;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .success-message .text-en {
+            display: block;
+            margin-top: var(--spacing-xs);
+            font-size: 0.95rem;
+        }
+
+        @keyframes slideUpFade {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Background Effects Container -->
+    <div id="bg-effects"></div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="./Atharlogo_optimized.png" alt="أثر ATHAR" class="logo-img">
+            </a>
+
+            <div class="nav-center">أثر | ATHAR</div>
+
+            <div class="nav-right">
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html" class="nav-link">الرئيسية</a></li>
+                    <li><a href="index.html#products" class="nav-link">المنتجات</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Success Section -->
+    <main class="success-page section">
+        <div class="container">
+            <div class="success-container mx-auto">
+                <div class="success-icon">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                </div>
+
+                <h1 class="success-title">تم تقديم الطلب بنجاح!</h1>
+                <p class="success-subtitle">Order Placed Successfully!</p>
+
+                <div class="success-message">
+                    سيتم التواصل معك عبر الواتساب قريباً لتأكيد طلبك.
+                    <br>
+                    <strong>سيصلك الطلب خلال 3 إلى 5 أيام عمل.</strong>
+
+                    <span class="text-en">
+                        We will contact you shortly through WhatsApp to confirm your order.
+                        <br>
+                        <strong>You will receive your order within 3 to 5 business days.</strong>
+                    </span>
+                </div>
+
+                <a href="index.html" class="btn btn-primary btn-large">العودة للرئيسية / Back to Home</a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('bg-effects');
+            const density = 25;
+            for (let i = 0; i < density; i++) {
+                const mote = document.createElement('div');
+                mote.classList.add('gold-mote');
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
+                const size = Math.random() * 4 + 2;
+                const duration = Math.random() * 5 + 4;
+                const delay = Math.random() * 5;
+                const maxOpacity = Math.random() * 0.6 + 0.4;
+                const minOpacity = Math.random() * 0.2 + 0.1;
+
+                mote.style.left = `${x}%`;
+                mote.style.top = `${y}%`;
+                mote.style.width = `${size}px`;
+                mote.style.height = `${size}px`;
+                mote.style.animation = `float-twinkle ${duration}s ease-in-out infinite`;
+                mote.style.animationDelay = `${delay}s`;
+
+                mote.style.setProperty('--max-opacity', maxOpacity);
+                mote.style.setProperty('--min-opacity', minOpacity);
+
+                container.appendChild(mote);
+            }
+        });
+    </script>
+</body>
+
+</html>

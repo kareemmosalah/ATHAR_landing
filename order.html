@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="أثر (ATHAR) - Premium laptop sleeves combining Arabic craftsmanship with innovative organization. Natural leather, eco-friendly linen, revolutionary circular cable organizer. اترك أثرك">
+    <meta name="keywords"
+        content="laptop sleeve, premium laptop bag, Arabic craftsmanship, leather laptop sleeve, cable organizer, eco-friendly tech accessories, أثر, حقيبة لابتوب">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="أثر | Checkout | ATHAR">
+    <meta property="og:description" content="Premium organization. Authentic craftsmanship. اترك أثرك">
+    <meta property="og:image" content="./back_view_black_brown_leather.PNG">
+    <meta property="og:type" content="website">
+
+    <title>أثر | إتمام الطلب | ATHAR Checkout</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="./Atharlogo_optimized.png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Montserrat:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="./styles.css">
+
+    <style>
+        /* Specific styles for checkout page layout */
+        .checkout-page {
+            padding-top: 120px;
+            /* Space for fixed nav */
+            min-height: 100vh;
+        }
+
+        .checkout-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-xl);
+            align-items: start;
+        }
+
+        .product-preview {
+            position: sticky;
+            top: 120px;
+            background: var(--color-surface);
+            border-radius: 24px;
+            padding: var(--spacing-lg);
+            border: 1px solid rgba(212, 165, 116, 0.2);
+            text-align: center;
+        }
+
+        .product-preview img {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 12px;
+            margin: 0 auto 1.5rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .product-preview h3 {
+            font-size: 1.5rem;
+            color: var(--color-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-preview .price {
+            font-size: 1.25rem;
+            color: var(--color-white);
+            font-family: var(--font-english);
+        }
+
+        @media (max-width: 900px) {
+            .checkout-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-preview {
+                position: static;
+            }
+        }
+
+        /* Multi-step Checkout Styles */
+        .step-container {
+            transition: all 0.3s ease;
+        }
+
+        .step-hidden {
+            display: none !important;
+        }
+
+        .summary-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(212, 165, 116, 0.2);
+            border-radius: 12px;
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--spacing-sm);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .summary-row:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .summary-label {
+            color: var(--color-text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .summary-value {
+            color: var(--color-white);
+            font-weight: 500;
+            text-align: left;
+            font-family: var(--font-english);
+        }
+
+        .summary-value.arabic {
+            font-family: var(--font-arabic);
+            text-align: right;
+            max-width: 60%;
+        }
+
+        .total-row {
+            margin-top: var(--spacing-md);
+            padding-top: var(--spacing-md);
+            font-weight: 700;
+        }
+
+        .image-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .main-image-container {
+            width: 100%;
+            height: 400px;
+            border-radius: 12px;
+            border: 1px solid rgba(212, 165, 116, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            background-color: rgba(255, 255, 255, 0.02);
+            overflow: hidden;
+        }
+
+        .main-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .thumbnail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+            gap: var(--spacing-sm);
+        }
+
+        .thumbnail-grid img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: border-color 0.2s ease, opacity 0.2s ease;
+            opacity: 0.6;
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+
+        .thumbnail-grid img:hover,
+        .thumbnail-grid img.active {
+            opacity: 1;
+            border-color: var(--color-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .main-image-container {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Background Effects Container -->
+    <div id="bg-effects"></div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">
+                    <img src="./Atharlogo_optimized.png" alt="أثر ATHAR" class="logo-img">
+                </a>
+                <!-- Cart icon -->
+                <button class="cart-icon-btn" id="cartToggle" aria-label="Open Cart">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="9" cy="21" r="1" />
+                        <circle cx="20" cy="21" r="1" />
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+                    </svg>
+                    <span class="cart-badge" id="cartBadge" style="display:none">0</span>
+                </button>
+            </div>
+
+            <div class="nav-center">أثر | ATHAR</div>
+
+            <div class="nav-right">
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html" class="nav-link">الرئيسية</a></li>
+                    <li><a href="index.html#products" class="nav-link">المنتجات</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Cart Drawer -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <aside class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h3>سلة الشراء / Cart</h3>
+            <button class="cart-close" id="cartClose">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <p class="cart-empty">سلتك فارغة &mdash; Empty cart</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>المجموع / Total</span>
+                <span id="cartTotal">0 EGP</span>
+            </div>
+            <a href="order.html" class="btn btn-primary btn-block btn-large">إتمام الطلب / Checkout</a>
+        </div>
+    </aside>
+
+    <!-- Dual-mode main: product detail OR checkout -->
+    <main class="section checkout-page">
+        <div class="container">
+
+            <!-- ======================== -->
+            <!--  MODE A: Product Detail  -->
+            <!-- ======================== -->
+            <div id="view-product" style="display:none">
+                <h1 class="section-title" id="pdp-title">تفاصيل المنتج</h1>
+                <p class="section-subtitle">Product Details</p>
+
+                <div class="checkout-grid">
+                    <!-- Gallery -->
+                    <div class="product-preview" id="productPreview">
+                        <div id="imageGallery" class="image-gallery">
+                            <img id="previewImage" src="./Atharlogo_optimized.png" alt="Product">
+                        </div>
+                        <h3 id="previewTitle" style="margin-top:15px;text-align:center;"></h3>
+                        <p class="price" id="previewPrice" style="margin-top:10px;text-align:center;"></p>
+                    </div>
+
+                    <!-- Add to cart panel -->
+                    <div class="order-container" style="margin-top:0;">
+                        <div class="cash-only-banner">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                            </svg>
+                            <div>
+                                <h3>الدفع عند الاستلام فقط</h3>
+                                <p>Cash on Delivery Only</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom:1rem;">
+                            <label>مقاس اللابتوب / Laptop Size *</label>
+                            <select id="pdp-size" class="size-select"
+                                style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(212,165,116,0.3);background:rgba(255,255,255,0.05);color:var(--color-white);font-family:inherit;font-size:0.95rem;">
+                                <option value="">اختر المقاس / Select Size</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom:1.5rem;">
+                            <label>الكمية / Quantity</label>
+                            <input type="number" id="pdp-qty" value="1" min="1"
+                                style="padding:10px;border-radius:8px;border:1px solid rgba(212,165,116,0.3);background:rgba(255,255,255,0.05);color:var(--color-white);font-family:inherit;font-size:0.95rem;width:100%;">
+                        </div>
+
+                        <button id="pdp-add-btn" class="btn btn-primary btn-large btn-block">
+                            أضف إلى السلة / Add to Cart
+                        </button>
+                        <p id="pdp-feedback" style="text-align:center;color:#2ecc71;margin-top:12px;display:none;">✓ تمت
+                            الإضافة إلى السلة!</p>
+
+                        <button id="go-to-cart-btn" class="btn btn-primary btn-block"
+                            style="margin-top:10px;display:none;background:var(--color-secondary);color:#000;">
+                            → الذهاب إلى السلة / View Cart
+                        </button>
+
+                        <a href="index.html#products" class="btn btn-secondary btn-block"
+                            style="margin-top:12px;text-align:center;display:block;">
+                            ← العودة للمنتجات / Back
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ======================== -->
+            <!--  MODE B: Cart Checkout   -->
+            <!-- ======================== -->
+            <div id="view-checkout" style="display:none">
+                <h1 class="section-title">إتمام الطلب</h1>
+                <p class="section-subtitle">Complete Your Order</p>
+
+                <!-- Cart is empty guard -->
+                <div id="checkout-empty" style="display:none;text-align:center;padding:3rem 0;">
+                    <p style="font-size:1.2rem;color:var(--color-text-secondary);">سلتك فارغة — Empty cart</p>
+                    <a href="index.html#products" class="btn btn-primary" style="margin-top:1rem;">← تسوق الآن /
+                        Shop</a>
+                </div>
+
+                <div id="checkout-body">
+                    <div class="checkout-grid">
+                        <!-- Cart summary sidebar -->
+                        <div class="product-preview" id="cart-summary-panel">
+                            <h3 style="text-align:center;margin-bottom:1rem;color:var(--color-white);">سلة الشراء / Cart
+                            </h3>
+                            <div id="checkout-cart-items" style="display:flex;flex-direction:column;gap:10px;"></div>
+                            <div style="border-top:1px solid rgba(212,165,116,0.2);margin-top:1rem;padding-top:1rem;">
+                                <div
+                                    style="display:flex;justify-content:space-between;font-weight:700;font-size:1.05rem;color:var(--color-white);">
+                                    <span>الإجمالي / Total</span>
+                                    <span id="checkout-total" style="color:var(--color-secondary);">0 EGP</span>
+                                </div>
+                                <p
+                                    style="font-size:0.78rem;color:var(--color-text-secondary);margin-top:6px;text-align:center;">
+                                    + مصاريف الشحن 30-60 EGP حسب المنطقة</p>
+                            </div>
+                        </div>
+
+                        <!-- Checkout form -->
+                        <div class="order-container" style="margin-top:0;">
+                            <div class="cash-only-banner">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                                </svg>
+                                <div>
+                                    <h3>الدفع عند الاستلام فقط</h3>
+                                    <p>Cash on Delivery Only</p>
+                                </div>
+                            </div>
+
+                            <form class="order-form" id="checkoutForm" name="order" method="POST" data-netlify="true"
+                                action="success.html">
+                                <input type="hidden" name="form-name" value="order">
+                                <input type="hidden" name="cart" id="hidden-cart">
+
+                                <!-- STEP 1 -->
+                                <div id="step-1" class="step-container">
+                                    <div class="form-group">
+                                        <label for="name">الاسم بالكامل / Full Name *</label>
+                                        <input type="text" id="name" name="name" required>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="phone">رقم الهاتف / Phone Number *</label>
+                                            <input type="tel" id="phone" name="phone" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="phone2">رقم بديل / Alt Phone Number</label>
+                                            <input type="tel" id="phone2" name="phone2">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="address">العنوان بالتفصيل / Full Address *</label>
+                                        <textarea id="address" name="address" rows="3" required></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="notes">ملاحظات / Notes</label>
+                                        <textarea id="notes" name="notes" rows="2"></textarea>
+                                    </div>
+
+                                    <button type="button" id="btn-review"
+                                        class="btn btn-primary btn-large btn-block">مراجعة الطلب / Review Order</button>
+                                </div>
+
+                                <!-- STEP 2 -->
+                                <div id="step-2" class="step-container step-hidden">
+                                    <h3
+                                        style="color:var(--color-white);margin-bottom:var(--spacing-md);text-align:center;">
+                                        تأكيد الطلب / Order Summary</h3>
+
+                                    <div class="summary-box">
+                                        <div class="summary-row">
+                                            <span class="summary-label">الاسم / Name</span>
+                                            <span class="summary-value arabic" id="summary-name">...</span>
+                                        </div>
+                                        <div class="summary-row">
+                                            <span class="summary-label">الهاتف / Phone</span>
+                                            <span class="summary-value" id="summary-phone">...</span>
+                                        </div>
+                                        <div class="summary-row">
+                                            <span class="summary-label">العنوان / Address</span>
+                                            <span class="summary-value arabic" id="summary-address">...</span>
+                                        </div>
+                                        <div class="summary-row total-row">
+                                            <span class="summary-label" style="color:var(--color-secondary);">الإجمالي /
+                                                Total</span>
+                                            <span class="summary-value" id="summary-total"
+                                                style="color:var(--color-secondary);">...</span>
+                                        </div>
+                                    </div>
+
+                                    <div style="display:flex;gap:10px;margin-top:var(--spacing-md);">
+                                        <button type="button" id="btn-back" class="btn btn-secondary"
+                                            style="flex:1">تعديل / Edit</button>
+                                        <button type="submit" class="btn btn-primary" style="flex:2">تأكيد نهائي /
+                                            Confirm Order</button>
+                                    </div>
+
+                                    <p class="form-footer-note" style="margin-top:15px;">سيتم التواصل معك عبر الواتساب
+                                        لتأكيد الطلب قبل الشحن<br>
+                                        <span style="opacity:0.7;font-size:0.85rem;">We will contact you via WhatsApp to
+                                            confirm before shipping.</span>
+                                    </p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact" style="margin-top: 0; padding-top: var(--spacing-xl);">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <img src="./Atharlogo_optimized.png" alt="أثر ATHAR" class="footer-logo" loading="lazy">
+                    <p class="footer-tagline">اترك أثرك<br>Leave Your Mark</p>
+                </div>
+                <div class="footer-column footer-shop-section">
+                    <h4 class="centered-footer-h">روابط سريعة / LINKS</h4>
+                    <ul class="footer-links-horizontal">
+                        <li><a href="index.html">الرئيسية / Home</a></li>
+                        <li><a href="index.html#products">المنتجات / Products</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 أثر ATHAR. All rights reserved.</p>
+                <p>Made with ❤️ in the Middle East</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            /* ---- Product Map ---- */
+            const productMap = {
+                mac_black: {
+                    title: 'أسود / جلد أسود (Mac/Win)',
+                    images: [
+                        './mac:windows (13.3 -14-15 ) (black : black leather)/main.PNG',
+                        './mac:windows (13.3 -14-15 ) (black : black leather)/Notebook insertion_back_black.PNG',
+                        './mac:windows (13.3 -14-15 ) (black : black leather)/back_view_black.PNG',
+                        './mac:windows (13.3 -14-15 ) (black : black leather)/insidesoft_matrial_back.PNG',
+                        './mac:windows (13.3 -14-15 ) (black : black leather)/tan-leather-patch-detail_black.PNG'
+                    ],
+                    sizes: ['13.3"', '14"', '15"']
+                },
+                mac_brown: {
+                    title: 'أسود / جلد بني (Mac/Win)',
+                    images: [
+                        './mac:windows (13.3 -14-15 ) (black : brown leather)/main.png',
+                        './mac:windows (13.3 -14-15 ) (black : brown leather)/Notebook insertion_back_black_brown leather.jpg',
+                        './mac:windows (13.3 -14-15 ) (black : brown leather)/back_view_black_brown_leather.PNG',
+                        './mac:windows (13.3 -14-15 ) (black : brown leather)/insidesoft_matrial_back_brown leather.PNG',
+                        './mac:windows (13.3 -14-15 ) (black : brown leather)/tan-leather-patch-detail_black_brown_lether.jpg'
+                    ],
+                    sizes: ['13.3"', '14"', '15"']
+                },
+                mac_gray: {
+                    title: 'رمادي / جلد أزرق (Mac/Win)',
+                    images: [
+                        './mac:windows (13.3 -14-15 ) (gray : blue leather)/main.PNG',
+                        './mac:windows (13.3 -14-15 ) (gray : blue leather)/14 inch gray1.PNG',
+                        './mac:windows (13.3 -14-15 ) (gray : blue leather)/14 inch gray2 2.PNG'
+                    ],
+                    sizes: ['13.3"', '14"', '15"']
+                },
+                win_brown: {
+                    title: 'أسود / جلد بني (Win 15.6")',
+                    images: [
+                        './Athar windows (black : brown leather) sleeve  15.6/main.PNG',
+                        './Athar windows (black : brown leather) sleeve  15.6/this too.PNG',
+                        './Athar windows (black : brown leather) sleeve  15.6/windos 4.PNG'
+                    ],
+                    sizes: ['15.6"']
+                },
+                win_gray: {
+                    title: 'رمادي / جلد أزرق (Win 15.6")',
+                    images: [
+                        './Athar windows (gray: blue leather) sleeve -15.6/main.png',
+                        './Athar windows (gray: blue leather) sleeve -15.6/windos1.png',
+                        './Athar windows (gray: blue leather) sleeve -15.6/windos3.png'
+                    ],
+                    sizes: ['15.6"']
+                }
+            };
+
+            /* ---- Cart helpers ---- */
+            let cart = JSON.parse(localStorage.getItem('athar_cart') || '[]');
+            function saveCart() { localStorage.setItem('athar_cart', JSON.stringify(cart)); }
+            function cartTotal() { return cart.reduce((s, i) => s + i.price * i.qty, 0); }
+
+            /* ---- Cart drawer ---- */
+            function openCartDrawer() {
+                document.getElementById('cartDrawer').classList.add('open');
+                document.getElementById('cartOverlay').classList.add('open');
+            }
+            function closeCartDrawer() {
+                document.getElementById('cartDrawer').classList.remove('open');
+                document.getElementById('cartOverlay').classList.remove('open');
+            }
+            function updateCartBadge() {
+                const count = cart.reduce((s, i) => s + i.qty, 0);
+                const badge = document.getElementById('cartBadge');
+                badge.textContent = count;
+                badge.style.display = count > 0 ? 'flex' : 'none';
+            }
+            window.removeItem = function (idx) {
+                cart.splice(idx, 1);
+                saveCart();
+                updateCartBadge();
+                renderCartDrawer();
+
+                // Also update checkout sidebar if we are in checkout mode
+                if (document.getElementById('view-checkout').style.display === 'block') {
+                    if (cart.length === 0) {
+                        document.getElementById('checkout-empty').style.display = 'block';
+                        document.getElementById('checkout-body').style.display = 'none';
+                    } else if (typeof renderCheckoutSidebar === 'function') {
+                        renderCheckoutSidebar();
+                    }
+                }
+            };
+
+            function renderCartDrawer() {
+                const el = document.getElementById('cartItems');
+                const totalEl = document.getElementById('cartTotal');
+                if (!el) return;
+                if (cart.length === 0) {
+                    el.innerHTML = '<p class="cart-empty">\u0633\u0644\u062a\u0643 \u0641\u0627\u0631\u063a\u0629 &mdash; Empty cart</p>';
+                    totalEl.textContent = '0 EGP';
+                    return;
+                }
+                el.innerHTML = cart.map((item, idx) => `
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <strong>${item.name}</strong>
+                            <small>${item.size} × ${item.qty}</small>
+                        </div>
+                        <div class="cart-item-actions">
+                            <span class="item-price">${item.price * item.qty} EGP</span>
+                            <button class="remove-btn" onclick="removeItem(${idx})">&times;</button>
+                        </div>
+                    </div>
+                `).join('');
+                totalEl.textContent = cartTotal() + ' EGP';
+            }
+
+            /* ---- Wire cart icon ---- */
+            document.getElementById('cartToggle').addEventListener('click', openCartDrawer);
+            document.getElementById('cartClose').addEventListener('click', closeCartDrawer);
+            document.getElementById('cartOverlay').addEventListener('click', closeCartDrawer);
+
+            /* ---- Init badge ---- */
+            updateCartBadge();
+            renderCartDrawer();
+
+            /* ---- Gallery builder ---- */
+            function buildGallery(product) {
+                const gallery = document.getElementById('imageGallery');
+                gallery.innerHTML = '';
+                if (!product.images.length) return;
+
+                const mainCont = document.createElement('div');
+                mainCont.className = 'main-image-container';
+                const mainImg = document.createElement('img');
+                mainImg.src = product.images[0];
+                mainImg.alt = product.title;
+                mainCont.appendChild(mainImg);
+                gallery.appendChild(mainCont);
+
+                if (product.images.length > 1) {
+                    const grid = document.createElement('div');
+                    grid.className = 'thumbnail-grid';
+                    product.images.forEach((src, i) => {
+                        const t = document.createElement('img');
+                        t.src = src; t.alt = `Thumbnail ${i + 1}`; t.loading = 'lazy';
+                        if (i === 0) t.classList.add('active');
+                        t.addEventListener('click', () => {
+                            mainImg.src = src;
+                            grid.querySelectorAll('img').forEach(x => x.classList.remove('active'));
+                            t.classList.add('active');
+                        });
+                        grid.appendChild(t);
+                    });
+                    gallery.appendChild(grid);
+                }
+            }
+
+            /* ---- Determine mode from URL ---- */
+            const pid = new URLSearchParams(window.location.search).get('pid');
+
+            /* ============================= */
+            /*  MODE A — Product Detail Page */
+            /* ============================= */
+            if (pid && productMap[pid]) {
+                document.getElementById('view-product').style.display = 'block';
+
+                const product = productMap[pid];
+                document.getElementById('pdp-title').textContent = product.title;
+                document.getElementById('previewTitle').textContent = product.title;
+                document.getElementById('previewPrice').innerHTML =
+                    '<span style="text-decoration:line-through;color:#888;font-size:0.85rem;">790 EGP</span>' +
+                    '<span style="color:var(--color-secondary);font-weight:700;font-size:1.1rem;margin-right:6px;">590 EGP</span>' +
+                    '<span style="font-size:0.7rem;background:rgba(46,204,113,0.15);color:#2ecc71;border-radius:4px;padding:1px 5px;">25% OFF</span>';
+
+                buildGallery(product);
+
+                // Populate size dropdown
+                const sizeSelect = document.getElementById('pdp-size');
+                product.sizes.forEach(s => {
+                    const opt = document.createElement('option');
+                    opt.value = s; opt.textContent = s;
+                    sizeSelect.appendChild(opt);
+                });
+                if (product.sizes.length === 1) {
+                    sizeSelect.value = product.sizes[0];
+                }
+
+                // Add to cart
+                document.getElementById('pdp-add-btn').addEventListener('click', () => {
+                    const size = sizeSelect.value;
+                    const qty = parseInt(document.getElementById('pdp-qty').value) || 1;
+                    if (!size) { sizeSelect.style.borderColor = 'var(--color-secondary)'; sizeSelect.focus(); return; }
+                    sizeSelect.style.borderColor = '';
+
+                    const existing = cart.find(x => x.pid === pid && x.size === size);
+                    if (existing) { existing.qty += qty; }
+                    else { cart.push({ pid, name: product.title, size, price: 590, qty }); }
+                    saveCart();
+
+                    const fb = document.getElementById('pdp-feedback');
+                    const goBtn = document.getElementById('go-to-cart-btn');
+                    fb.style.display = 'block';
+                    goBtn.style.display = 'block';
+
+                    // Update badge
+                    updateCartBadge();
+                    renderCartDrawer();
+
+                    goBtn.onclick = openCartDrawer;
+                });
+
+                /* ============================= */
+                /*  MODE B — Cart Checkout       */
+                /* ============================= */
+            } else {
+                document.getElementById('view-checkout').style.display = 'block';
+
+                // Reusable checkout sidebar render logic
+                window.renderCheckoutSidebar = function () {
+                    const itemsEl = document.getElementById('checkout-cart-items');
+                    itemsEl.innerHTML = cart.map((item, idx) => `
+                        <div style="background:rgba(255,255,255,0.04);border-radius:8px;padding:10px;border:1px solid rgba(212,165,116,0.1); position:relative;">
+                            <strong style="display:block;font-size:0.9rem;color:var(--color-white);">${item.name}</strong>
+                            <small style="color:var(--color-secondary);">${item.size} × ${item.qty}</small>
+                            <span style="display:block;font-weight:700;color:var(--color-secondary);margin-top:6px;">${item.price * item.qty} EGP</span>
+                            <button onclick="removeItem(${idx})" style="position:absolute; top:8px; left:8px; background:none; border:none; color:#ff6b6b; font-size:1.2rem; cursor:pointer;" title="إزالة من السلة">&times;</button>
+                        </div>
+                    `).join('');
+                    document.getElementById('checkout-total').textContent = cartTotal() + ' EGP';
+                    document.getElementById('hidden-cart').value = JSON.stringify(cart);
+                };
+
+                if (cart.length === 0) {
+                    document.getElementById('checkout-empty').style.display = 'block';
+                    document.getElementById('checkout-body').style.display = 'none';
+                } else {
+                    renderCheckoutSidebar();
+
+                    // Multi-step logic
+                    const form = document.getElementById('checkoutForm');
+                    const step1 = document.getElementById('step-1');
+                    const step2 = document.getElementById('step-2');
+
+                    document.getElementById('btn-review').addEventListener('click', () => {
+                        if (!form.checkValidity()) { form.reportValidity(); return; }
+                        document.getElementById('summary-name').textContent = document.getElementById('name').value;
+                        document.getElementById('summary-phone').textContent = document.getElementById('phone').value;
+                        document.getElementById('summary-address').textContent = document.getElementById('address').value;
+                        document.getElementById('summary-total').textContent = cartTotal() + ' EGP + الشحن';
+                        // Freeze cart into hidden field
+                        document.getElementById('hidden-cart').value = JSON.stringify(cart);
+                        step1.classList.add('step-hidden');
+                        step2.classList.remove('step-hidden');
+                        step2.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    });
+
+                    document.getElementById('btn-back').addEventListener('click', () => {
+                        step2.classList.add('step-hidden');
+                        step1.classList.remove('step-hidden');
+                    });
+
+                    // Clear cart after successful submit
+                    form.addEventListener('submit', () => {
+                        localStorage.removeItem('athar_cart');
+                    });
+                }
+            }
+        })();
+    </script>
+</body>
+
+</html>
