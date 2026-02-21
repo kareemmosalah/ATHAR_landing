@@ -366,7 +366,8 @@
                                 <input type="hidden" name="_subject" value="🛒 طلب جديد من أثر - New ATHAR Order!">
                                 <input type="hidden" name="_captcha" value="false">
                                 <input type="hidden" name="_template" value="table">
-                                <input type="hidden" name="cart" id="hidden-cart">
+                                <input type="hidden" name="cart_items" id="hidden-cart">
+                                <input type="hidden" name="total" id="hidden-total">
 
                                 <!-- STEP 1 -->
                                 <div id="step-1" class="step-container">
@@ -717,7 +718,8 @@
                         </div>
                     `).join('');
                     document.getElementById('checkout-total').textContent = cartTotal() + ' EGP';
-                    document.getElementById('hidden-cart').value = JSON.stringify(cart);
+                    document.getElementById('hidden-cart').value = cart.map((item, i) => `${i+1}. ${item.name} | ${item.size} × ${item.qty} = ${item.price * item.qty} EGP`).join(' \n ');
+                    document.getElementById('hidden-total').value = cartTotal() + ' EGP';
                 };
 
                 if (cart.length === 0) {
@@ -738,7 +740,8 @@
                         document.getElementById('summary-address').textContent = document.getElementById('address').value;
                         document.getElementById('summary-total').textContent = cartTotal() + ' EGP + الشحن';
                         // Freeze cart into hidden field
-                        document.getElementById('hidden-cart').value = JSON.stringify(cart);
+                        document.getElementById('hidden-cart').value = cart.map((item, i) => `${i+1}. ${item.name} | ${item.size} × ${item.qty} = ${item.price * item.qty} EGP`).join(' \n ');
+                        document.getElementById('hidden-total').value = cartTotal() + ' EGP';
                         step1.classList.add('step-hidden');
                         step2.classList.remove('step-hidden');
                         step2.scrollIntoView({ behavior: 'smooth', block: 'start' });
