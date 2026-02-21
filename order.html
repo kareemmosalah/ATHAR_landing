@@ -205,9 +205,6 @@
     <nav class="nav" id="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <a href="index.html">
-                    <img src="./Atharlogo_optimized.png" alt="أثر ATHAR" class="logo-img">
-                </a>
                 <!-- Cart icon -->
                 <button class="cart-icon-btn" id="cartToggle" aria-label="Open Cart">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -217,6 +214,9 @@
                     </svg>
                     <span class="cart-badge" id="cartBadge" style="display:none">0</span>
                 </button>
+                <a href="index.html">
+                    <img src="./Atharlogo_optimized.png" alt="أثر ATHAR" class="logo-img">
+                </a>
             </div>
 
             <div class="nav-center">أثر | ATHAR</div>
@@ -278,16 +278,6 @@
 
                     <!-- Add to cart panel -->
                     <div class="order-container" style="margin-top:0;">
-                        <div class="cash-only-banner">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-                            </svg>
-                            <div>
-                                <h3>الدفع عند الاستلام فقط</h3>
-                                <p>Cash on Delivery Only</p>
-                            </div>
-                        </div>
 
                         <div class="form-group" style="margin-bottom:1rem;">
                             <label>مقاس اللابتوب / Laptop Size *</label>
@@ -597,6 +587,22 @@
             document.getElementById('cartToggle').addEventListener('click', openCartDrawer);
             document.getElementById('cartClose').addEventListener('click', closeCartDrawer);
             document.getElementById('cartOverlay').addEventListener('click', closeCartDrawer);
+
+            /* ---- Mobile Nav Toggle ---- */
+            const navToggle = document.getElementById('navToggle');
+            const navMenu = document.getElementById('navMenu');
+            if (navToggle && navMenu) {
+                navToggle.addEventListener('click', () => {
+                    navToggle.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                });
+                navMenu.querySelectorAll('.nav-link').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navToggle.classList.remove('active');
+                        navMenu.classList.remove('active');
+                    });
+                });
+            }
 
             /* ---- Init badge ---- */
             updateCartBadge();

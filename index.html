@@ -42,9 +42,6 @@
     <nav class="nav" id="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <a href="#">
-                    <img src="./Atharlogo_optimized.png" alt="أثر ATHAR" class="logo-img">
-                </a>
                 <!-- Cart Icon -->
                 <button class="cart-icon-btn" id="cartToggle" aria-label="Open Cart">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -54,6 +51,9 @@
                     </svg>
                     <span class="cart-badge" id="cartBadge" style="display:none">0</span>
                 </button>
+                <a href="#">
+                    <img src="./Atharlogo_optimized.png" alt="أثر ATHAR" class="logo-img">
+                </a>
             </div>
 
             <div class="nav-center">أثر | ATHAR</div>
@@ -761,6 +761,20 @@
             document.getElementById('cartToggle').addEventListener('click', openCart);
             document.getElementById('cartClose').addEventListener('click', closeCart);
             document.getElementById('cartOverlay').addEventListener('click', closeCart);
+
+            /* ---- Mobile Nav Toggle ---- */
+            const navToggle = document.getElementById('navToggle');
+            const navMenu = document.getElementById('navMenu');
+            navToggle.addEventListener('click', () => {
+                navToggle.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+            navMenu.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    navToggle.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
 
             /* ---- Init ---- */
             updateBadge();
