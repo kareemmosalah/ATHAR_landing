@@ -1686,8 +1686,9 @@ h6 {
     .hero-image {
         width: 180% !important;
         max-width: none !important;
-        -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 92.5%, transparent 100%);
-        mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 92.5%, transparent 100%);
+        padding-bottom: 30px;
+        -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+        mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
     }
 
 
